@@ -85,10 +85,10 @@ stages:
       name: Windows1809_amd64
       pool:
         ${{ if eq(variables['System.TeamProject'], 'public') }}:
-          name: DotNetCore-Docker-Public
+          name: DotNetCore-Docker-1809-Public
         ${{ if eq(variables['System.TeamProject'], 'internal') }}:
           name: DotNetCore-Docker
-        demands: VSTS_OS -equals Windows_Server_2019_Data_Center_RS5
+          demands: VSTS_OS -equals Windows_Server_2019_Data_Center_RS5
       matrix: dependencies.GenerateBuildMatrix.outputs['matrix.Windows1809Amd64']
       dockerClientOS: windows
       buildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
