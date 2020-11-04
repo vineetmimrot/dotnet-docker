@@ -19,6 +19,11 @@ namespace aspnetapp.Pages
 
         public void OnGet()
         {
+            long j = 99999, k;
+            for (int  i = 0; i < 99999999; i++) {
+                 k = ((j*j+1)/(j+1) + (j*j+7)/(j+3) + (j*j+5)/(j+17) + (j*j+23)/(j+19) + (j*j+1)/(j+1) + (j*j+7)/(j+3) + (j*j+5)/(j+17) + (j*j+23)/(j+19))/((j*j+1)/(j+1) + (j*j+7)/(j+3) + (j*j+5)/(j+17) + (j*j+23)/(j+19)+1);
+            }
+            _logger.LogInformation("### Process complete");
         }
     }
 }
