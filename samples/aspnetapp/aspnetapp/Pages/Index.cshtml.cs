@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace aspnetapp.Pages
 {
@@ -19,7 +20,29 @@ namespace aspnetapp.Pages
 
         public void OnGet()
         {
-
+           _logger.LogInformation("\n\n### Process Id: " + Bash("cat /etc/hostname"));
         }
+
+        public static string Bash(string cmd)
+        {
+            var escapedArgs = cmd.Replace("\"", "\\\"");
+            
+            var process = new Process()
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "/bin/bash",
+                    Arguments = $"-c \"{escapedArgs}\"",
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                }
+            };
+            process.Start();
+            string result = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+            return result;
+        }
+
     }
 }

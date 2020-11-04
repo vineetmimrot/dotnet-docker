@@ -24,6 +24,10 @@
             <td>@(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") is object ? "true" : "false")</td>
         </tr>
         <tr>
+            <td>HostName</td>
+            <td>@System.IO.File.ReadAllLines("/etc/hostname")[0]</td>
+        </tr>
+        <tr>
             <td>CPU cores</td>
             <td>@Environment.ProcessorCount</td>
         </tr>
